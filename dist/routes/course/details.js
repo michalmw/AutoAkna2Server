@@ -28,19 +28,46 @@ exports.add = function (req, res) {
 	});
 };
 
-exports.update = function (req, res) {
+exports.getCount = function (req, res) {
 
-	// delete req.body._id;
+	Course.count({ 'type': req.params.id,
+		$and: [{
+			$or: [{ 'status': 'zatwierdzony' }, { 'status': 'zmieniony' }, { 'status': 'zakończony' }, { 'status': 'odwołany' }]
+		}] }, function (err, course) {
+		if (err) res.status(400).send(err);
 
-
-	// Gallery.findOneAndUpdate({_id: req.params.id}, {title: req.body.title}, ( err, gallery ) => {
-
-	// 	if(err)
-	// 		res.status(400).send(err);
-
-	// 	res.status(200).send(gallery);
-
-	// });
+		// console.log('Course', course);
+		if (course) res.status(200).json({ 'Is': course });else res.status(200).json({ 'Is': 0 });
+	});
 };
 
-exports.delete = function (req, res) {};
+exports.get = function (req, res) {
+
+	Course.findOne({ _id: req.params.id }, function (err, course) {
+		if (err) res.status(400).send(err);
+
+		res.status(200).send(course);
+	});
+};
+
+exports.update = function (req, res) {
+
+	delete req.body._id;
+
+	Course.findOneAndUpdate({ _id: req.params.id }, req.body, function (err, course) {
+
+		if (err) res.status(400).send(err);
+
+		res.status(200).send(course);
+	});
+};
+
+exports.delete = function (req, res) {
+
+	Course.remove({ _id: req.params.id }, function (err, course) {
+
+		if (err) res.status(400).send(err);
+
+		res.status(200).send(course);
+	});
+};

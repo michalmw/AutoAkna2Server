@@ -49,4 +49,12 @@ exports.update = function (req, res) {
 	});
 };
 
-exports.delete = function (req, res) {};
+exports.delete = function (req, res) {
+
+	User.remove({ _id: req.params.id }, function (err, user) {
+
+		if (err) res.status(400).send(err);
+
+		res.status(200).send(user);
+	});
+};

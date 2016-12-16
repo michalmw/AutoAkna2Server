@@ -20,10 +20,11 @@ app.use((req, res, next) => {
 
 const usersRoutes = require('./routes/users/route.js');
 const courseRoutes = require('./routes/course/route.js');
+const inspektoratRoutes = require('./routes/inspektorat/route.js');
 
 app.use('/api/users', usersRoutes );
-app.use('/api/course', courseRoutes );
-
+app.use('/api/courses', courseRoutes );
+app.use('/api/inspektorat', inspektoratRoutes );
 
 
 app.get('/',(req, res) => {

@@ -18,9 +18,11 @@ app.use(function (req, res, next) {
 
 var usersRoutes = require('./routes/users/route.js');
 var courseRoutes = require('./routes/course/route.js');
+var inspektoratRoutes = require('./routes/inspektorat/route.js');
 
 app.use('/api/users', usersRoutes);
-app.use('/api/course', courseRoutes);
+app.use('/api/courses', courseRoutes);
+app.use('/api/inspektorat', inspektoratRoutes);
 
 app.get('/', function (req, res) {
   res.json('eeee');

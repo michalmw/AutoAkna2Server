@@ -62,7 +62,13 @@ exports.update = ( req, res ) => {
 
 exports.delete = ( req, res ) => {
 
+	User.remove({_id: req.params.id}, ( err, user) => {
 
+		if(err)
+			res.status(400).send(err);
+
+		res.status(200).send(user);
+	});
 
 
 };
