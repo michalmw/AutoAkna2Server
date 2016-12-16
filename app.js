@@ -21,11 +21,12 @@ app.use((req, res, next) => {
 const usersRoutes = require('./routes/users/route.js');
 const courseRoutes = require('./routes/course/route.js');
 const inspektoratRoutes = require('./routes/inspektorat/route.js');
+const authRoutes = require('./routes/auth/route.js');
 
 app.use('/api/users', usersRoutes );
 app.use('/api/courses', courseRoutes );
 app.use('/api/inspektorat', inspektoratRoutes );
-
+app.use('/api/auth', authRoutes);
 
 app.get('/',(req, res) => {
 	res.json('eeee');
