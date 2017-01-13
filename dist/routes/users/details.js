@@ -49,6 +49,36 @@ exports.update = function (req, res) {
 	});
 };
 
+exports.login = function (req, res) {
+
+	var login = req.body.login || '';
+	var password = req.body.password || '';
+
+	User.findOne({ 'login': login }, function (err, user) {
+
+		if (err) res.status(400).send(err);
+
+		if (user) {
+
+			if (user.password == password) res.status(200).send(user);else res.status(200).send({ 'status': 'hasło nie jest poprawne' });
+		} else {
+			res.status(200).send({ 'status': 'nie znaleziono usera' });
+		}
+	});
+};
+
+exports.logout = function (req, res) {
+
+	var user = new User(req.body);
+
+	user.save(function (err) {
+
+		if (err) res.status(400).send(err);
+
+		res.status(200).send(user);
+	});
+};
+
 exports.delete = function (req, res) {
 
 	User.remove({ _id: req.params.id }, function (err, user) {

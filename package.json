@@ -16,5 +16,13 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "mongoose": "^4.6.8"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michalmw/AutoAkna2Server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/michalmw/AutoAkna2Server/issues"
+  },
+  "homepage": "https://github.com/michalmw/AutoAkna2Server#readme"
 }
